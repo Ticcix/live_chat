@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>კონფიგურაცია - ონლაინ დახმარება სამართევი პანელი </title>
+
+        <!-- Fonts -->
+
+        <?php echo $app->renderView('blocks/fonts.html'); ?>
+
+        <!-- Styles -->
+
+        <link rel="stylesheet" href="<?php echo $app->asset('css/jquery.mCustomScrollbar.css') ?>" />
+        <link rel="stylesheet" href="<?php echo $app->asset('css/framework.css') ?>" />
+        <link rel="stylesheet" href="<?php echo $app->asset('css/main.css') ?>" />
+        <link rel="stylesheet" href="<?php echo $app->asset('css/admin.css') ?>" />
+        <link rel="stylesheet" href="<?php echo $app->asset('css/bootstrap.css') ?>" />
+    </head>
+    <body class="install-wizard">
+
+        <img class="logo" src="<?php echo $app->asset('img/logo.png') ?>">
+
+        <div class="panel">
+
+            <div class="header">კონფიგურაცია</div>
+
+            <div class="content">
+
+                <!-- Introduction -->
+
+                <p class="intro">
+                    შემდეგი პარამეტრები არის დაკავშირებული თქვენს მონაცემთა ბაზასთან და მთლიანად მოდულთან.
+                    ისინი გამოიყენება რათა დაუკავშირდეს ერთმანეთს თქვენი მონაცემთა ბაზა და განსაზღვრავს მომხმარებლის ანგარიში.
+შეავსეთ ფორმა და დააჭირეთ  <i>დამახსოვრება</i>.
+
+                    <br><br>
+
+                    <strong>
+                    თუ მოცემული მონაცემთა ბაზა ჯერ არ არსებობს, ინსტალაციის ოსტატი შეეცდება ავტომატურად შექმნას სერვერზე, თუმცა ეს მცდელობა ვერ მოხერხდება. არ ინერვიულოთ, უბრალოდ შექმენით მონაცემთა ბაზა ხელით თქვენი მონაცემთა ბაზების ადმინისტრირების ინსტრუმენტით (მაგ. <I> phpMyAdmin </i>) და დაბრუნდით ამ გვერდზე.
+
+                        <br><br>
+
+                       თუ თქვენ უკვე დააინსტალირეთ აპლიკაცია და უბრალოდ გსურთ შეცვალოთ ზოგიერთი პარამეტრი, შეგიძლიათ შეცვალოთ ღირებულებები და დაწკაპეთ <i> დამახსოვრება </i> (არსებული მონაცემთა ბაზა უსაფრთხო და ხელუხლებელი დარჩება).
+                    </strong>
+                </p>
+
+                <?php if(isset($vars['errors'])) { ?>
+                <p class="error">
+                   მონაცემები არასწორია, გთხოვთ იხილოთ შეცდომის შეტყობინებები ქვემოთ და განაახლეთ ფორმა.
+                </p>
+                <?php } ?>
+
+                <?php if(isset($vars['notWritable'])) { ?>
+                <p class="error">
+                    აპლიკაცია საჭიროებს PHP- ის მიერ ფაილების ჩაწერას. ამჟამად არ აღითქმება:
+                    <br><br>
+                    <?php foreach($vars['notWritable'] as $path => $type) { ?>
+                        - <b><?php echo $path ?></b> <?php echo ($type == 'dir' ? 'directory' : 'file') ?><br>
+                    <?php } ?>
+                    <br><br>
+                   გთხოვთ, განაახლოთ ფაილები / ნებართვები და შემდეგ დაბრუნდით ამ გვერდზე.
+                </p>
+                <?php } ?>
+
+                <?php if(isset($vars['dbError'])) { ?>
+                <p class="error">
+                    მოდული ვერ დაუკავშირდა მოცემულ მონაცემთა ბაზას გთხოვთ, შეამოწმოთ <i> მონაცემთა ბაზის პარამეტრები </i> <br>განყოფილებაში ყველა მნიშვნელობა და დარწმუნდით, რომ თქვენი მონაცემთა ბაზა მუშაობს.
+                </p>
+                <?php } ?>
+
+                <?php if(isset($vars['dbCreateError'])) { ?>
+                <p class="error">
+                   მონაცემთა ბაზებისა და ცხრილების შექმნის მცდელობა ვერ მოხერხდა <br>
+გთხოვთ შეამოწმოთ ყველა მნიშვნელობა <i> მონაცემთა ბაზის პარამეტრების </i> განყოფილებაში.
+                    <br><br>
+
+                    ვერ მოიძებნა მონაცემთა ბაზა — <?php echo $vars['config']['dbName'] ?> — შექმენით მონაცემთა ბაზა ხელით თქვენი მონაცემთა ბაზების ადმინისტრირების ინსტრუმენტით (მაგ. <I> phpMyAdmin </i>) და დაბრუნდით ამ გვერდზე.
+
+                    <br><br>
+
+                    შიდა შეცდომის შეტყობინება: <?php echo $vars['message'] ?>
+                </p>
+                <?php } ?>
+
+                <form action="<?php echo $app->path('Install:wizard2') ?>" method="post">
+
+                    <!-- Database settings -->
+
+                    <h2>მონაცემთა ბაზის პარამეტრები</h2>
+
+                    <div class="section">
+
+                        <div class="row">
+                            <div class="col3"><label>Host</label></div>
+                            <div class="col9">
+                                <input type="text" name="config[dbHost]" value="<?php echo $vars['config']['dbHost'] ?>">
+                                <?php if(isset($vars['errors']['dbHost'])) { ?>
+                                    <p class="error"><?php echo $vars['errors']['dbHost'][0] ?></p>
+                                <?php } ?>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col3"><label>Port</label></div>
+                            <div class="col9">
+                                <input type="text" name="config[dbPort]" value="<?php echo $vars['config']['dbPort'] ?>">
+                                <?php if(isset($vars['errors']['dbPort'])) { ?>
+                                    <p class="error"><?php echo $vars['errors']['dbPort'][0] ?></p>
+                                <?php } ?>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col3"><label>Database name</label></div>
+                            <div class="col9">
+                                <input type="text" name="config[dbName]" value="<?php echo $vars['config']['dbName'] ?>">
+                                <?php if(isset($vars['errors']['dbName'])) { ?>
+                                    <p class="error"><?php echo $vars['errors']['dbName'][0] ?></p>
+                                <?php } ?>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col3"><label>Username</label></div>
+                            <div class="col9">
+                                <input type="text" name="config[dbUser]" value="<?php echo $vars['config']['dbUser'] ?>">
+                                <?php if(isset($vars['errors']['dbUser'])) { ?>
+                                    <p class="error"><?php echo $vars['errors']['dbUser'][0] ?></p>
+                                <?php } ?>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col3"><label>Password</label></div>
+                            <div class="col9">
+                                <input type="password" name="config[dbPassword]" value="<?php echo $vars['config']['dbPassword'] ?>">
+                                <?php if(isset($vars['errors']['dbPassword'])) { ?>
+                                    <p class="error"><?php echo $vars['errors']['dbPassword'][0] ?></p>
+                                <?php } ?>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- SMTP settings -->
+
+                    <h2>SMTP</h2>
+
+                    <div class="section">
+
+                        <p class="intro">
+                            ეს სექცია საშუალებას გაძლევთ გამოიყენოთ გარე SMTP სერვერი ელფოსტის გაგზავნისთვის. თქვენ შეგიძლიათ დატოვოთ SMTP პარამეტრები ხელშეუხებელი
+                            გამოიყენოთ ნაგულისხმევი ელ-ფოსტის სერვერი.
+                        </p>
+
+                        <div class="row">
+                            <div class="col3"><label>Use SMTP</label></div>
+                            <div class="col9">
+                                <input type="checkbox" name="config[services][mailer][smtp]" <?php echo $vars['config']['services']['mailer']['smtp'] == true ? 'checked="checked"' : '' ?> />
+                                <?php if(isset($vars['errors']['services']['mailer']['smtp'])) { ?>
+                                    <p class="error"><?php echo $vars['errors']['services']['mailer']['smtp'][0] ?></p>
+                                <?php } ?>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col3"><label>Encryption</label></div>
+                            <div class="col9">
+                                <input type="text" name="config[services][mailer][smtpSecure]" value="<?php echo $vars['config']['services']['mailer']['smtpSecure'] ?>">
+                                <?php if(isset($vars['errors']['services']['mailer']['smtpSecure'])) { ?>
+                                    <p class="error"><?php echo $vars['errors']['services']['mailer']['smtpSecure'][0] ?></p>
+                                <?php } ?>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col3"><label>Host(s), separate with ;</b></label></div>
+                            <div class="col9">
+                                <input type="text" name="config[services][mailer][smtpHost]" value="<?php echo $vars['config']['services']['mailer']['smtpHost'] ?>">
+                                <?php if(isset($vars['errors']['services']['mailer']['smtpHost'])) { ?>
+                                    <p class="error"><?php echo $vars['errors']['services']['mailer']['smtpHost'][0] ?></p>
+                                <?php } ?>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col3"><label>Port</label></div>
+                            <div class="col9">
+                                <input type="text" name="config[services][mailer][smtpPort]" value="<?php echo $vars['config']['services']['mailer']['smtpPort'] ?>">
+                                <?php if(isset($vars['errors']['services']['mailer']['smtpPort'])) { ?>
+                                    <p class="error"><?php echo $vars['errors']['services']['mailer']['smtpPort'][0] ?></p>
+                                <?php } ?>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col3"><label>User</label></div>
+                            <div class="col9">
+                                <input type="text" name="config[services][mailer][smtpUser]" value="<?php echo $vars['config']['services']['mailer']['smtpUser'] ?>">
+                                <?php if(isset($vars['errors']['services']['mailer']['smtpUser'])) { ?>
+                                    <p class="error"><?php echo $vars['errors']['services']['mailer']['smtpUser'][0] ?></p>
+                                <?php } ?>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col3"><label>Password</label></div>
+                            <div class="col9">
+                                <input type="password" name="config[services][mailer][smtpPass]" value="<?php echo $vars['config']['services']['mailer']['smtpPass'] ?>">
+                                <?php if(isset($vars['errors']['services']['mailer']['smtpPass'])) { ?>
+                                    <p class="error"><?php echo $vars['errors']['services']['mailer']['smtpPass'][0] ?></p>
+                                <?php } ?>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Admin user settings -->
+
+                    <h2>ადმინისტრატორის პარამეტრები</h2>
+
+                    <div class="section">
+
+                        <div class="row">
+                            <div class="col3"><label>ნიკნეიმი</label></div>
+                            <div class="col9">
+                                <input type="text" name="config[superUser]" value="<?php echo $vars['config']['superUser'] ?>">
+                                <?php if(isset($vars['errors']['superUser'])) { ?>
+                                    <p class="error"><?php echo $vars['errors']['superUser'][0] ?></p>
+                                <?php } ?>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col3"><label>პაროლი</label></div>
+                            <div class="col9">
+                                <input type="password" name="config[superPass]">
+                                <?php if(isset($vars['errors']['superPass'])) { ?>
+                                    <p class="error"><?php echo $vars['errors']['superPass'][0] ?></p>
+                                <?php } ?>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col3"><label>გაიმეორეთ პაროლი</label></div>
+                            <div class="col9">
+                                <input type="password" name="config[superPassRepeat]">
+                                <?php if(isset($vars['errors']['superPassRepeat'])) { ?>
+                                    <p class="error"><?php echo $vars['errors']['superPassRepeat'][0] ?></p>
+                                <?php } ?>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Other settings -->
+
+                    <h2>სხვა</h2>
+
+                    <div class="section">
+
+                        <div class="row">
+                            <div class="col3"><label>საკონტაქტო ელ-ფოსტა</label></div>
+                            <div class="col9">
+                                <input type="text" name="config[appSettings][contactMail]" value="<?php echo $vars['config']['appSettings']['contactMail'] ?>">
+                                <?php if(isset($vars['errors']['appSettings']['contactMail'])) { ?>
+                                    <p class="error"><?php echo $vars['errors']['appSettings']['contactMail'][0] ?></p>
+                                <?php } ?>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Actions -->
+
+                    <div class="row buttons">
+                        <div class="col6">
+                            <a class="btn secondary" href="<?php echo $app->path('Admin:index') ?>">
+                                <i class="icon-remove-sign icon-white"></i>
+                                გაუქმება
+                            </a>
+                        </div>
+
+                        <div class="col6">
+                            <button class="btn" type="submit">
+                                დამახსოვრება
+                                <i class="icon-circle-arrow-right icon-white"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+
+    </body>
+</html>

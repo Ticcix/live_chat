@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>კონფიგურაცია - ონლაინ დახმარება სამართევი პანელი</title>
+
+        <!-- Fonts -->
+
+        <?php echo $app->renderView('blocks/fonts.html'); ?>
+
+        <!-- Styles -->
+
+        <link rel="stylesheet" href="<?php echo $app->asset('css/jquery.mCustomScrollbar.css') ?>" />
+        <link rel="stylesheet" href="<?php echo $app->asset('css/framework.css') ?>" />
+        <link rel="stylesheet" href="<?php echo $app->asset('css/main.css') ?>" />
+        <link rel="stylesheet" href="<?php echo $app->asset('css/admin.css') ?>" />
+        <link rel="stylesheet" href="<?php echo $app->asset('css/bootstrap.css') ?>" />
+    </head>
+    <body class="install-wizard">
+
+        <img class="logo" src="<?php echo $app->asset('img/logo.png') ?>">
+        
+        <div class="panel">
+
+            <div class="header">კონფიგურაცია</div>
+
+            <div class="content">
+                
+                <!-- Introduction -->
+                
+                <p class="intro">
+                   კეთილი იყოს თქვენი მობრძანება - ონლაინ დახმარება - ში-. დაწყებამდე, აპლიკაცია უნდა იყოს კონფიგურირებული, რომ მოხდეს მონაცემთა ბაზასთან დაკავშირება. ინსტალაციის დროს თქვენ დაგჭირდებათ შემდეგი ინფორმაცია (თუ არ იცი რომელიმე ფუნქციის შესრულება, შეგიძლიათ მიიღოთ ინფრომაცია თქვენი ვებ ჰოსტინგ პროვაიდერისგან):
+
+                    <br><br>
+                    
+                    1. Database ჰოსტი <br>
+                    2. Database პორტი (მხოლოდ იმ შემთხვევაში, თუ არის ნაგულისხმები) <br>
+                    3. Database სახელი <br>
+                    4. Database მოხმარებლები <br>
+                    5. Database პაროლი
+                    
+                    <br><br>
+                    
+                    <strong>
+                       თუ მოცემული მონაცემთა ბაზა ჯერ არ არსებობს, ინსტალაციის ოსტატი შეეცდება ავტომატურად შექმნას სერვერზე, თუმცა ეს მცდელობა ვერ მოხერხდება. არ ინერვიულოთ, უბრალოდ შექმენით მონაცემთა ბაზა ხელით თქვენი მონაცემთა ბაზების ადმინისტრირების ინსტრუმენტით (მაგ. phpMyAdmin ) და დაბრუნდით ამ გვერდზე. 
+                    </strong>
+                </p>
+                
+                <!-- Actions -->
+
+                <div class="row buttons">
+                    <div class="col6">
+                        <a class="btn secondary" href="<?php echo $app->path('Admin:index') ?>">
+                            <i class="icon-remove-sign icon-white"></i>
+                            გაუქმება
+                        </a>
+                    </div>
+
+                    <div class="col6">
+                        <a class="btn" href="<?php echo $app->path('Install:wizard') ?>">
+                            დაწყება!
+                            <i class="icon-circle-arrow-right icon-white"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </body>
+</html>

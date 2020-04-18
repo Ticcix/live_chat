@@ -1,16 +1,16 @@
 <?php
 
 return array (
-  'dbHost' => '127.0.0.1',
-  'dbPort' => '3306',
-  'dbUser' => 'root',
-  'dbPassword' => 'root',
-  'dbName' => 'mirrormx_customer_chat',
-  'superUser' => 'root',
-  'superPass' => 'root',
-  'services' => 
+  'dbHost' => 'localhost', // ჰოსტი
+  'dbPort' => '3306', // პორტი
+  'dbUser' => 'root', //ბაზის მომხარებელი
+  'dbPassword' => 'root', //ბაზის პაროლი
+  'dbName' => 'mirrormx_customer_chat', // მონაცემთა ბაზა
+  'superUser' => 'root', // ადმინისტრატორი ნიკი
+  'superPass' => 'root', // პაროლი
+  'services' =>
   array (
-    'mailer' => 
+    'mailer' =>
     array (
       'smtp' => '',
       'smtpSecure' => 'ssl',
@@ -20,7 +20,7 @@ return array (
       'smtpPass' => '',
     ),
   ),
-  'appSettings' => 
+  'appSettings' =>
   array (
     'contactMail' => 'site@domain.com',
   ),

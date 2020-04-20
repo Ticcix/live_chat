@@ -6,10 +6,11 @@ With a simple control panel and interface completely . </br>
 <li> Upload plugin to site </li>
      <li> Use Dle Plugin Service </li>
      <li> Go to the chat panel </li>
-     <li> Authorize User: <b style = "color: rgb (227,55,55);"> root </b> Password: <b style = "color: rgb (227,55,55);"> root </b> </li>
+     <li> Authorize User:<b>root</b> Password:<b>root</b></li>
      <li> Confirm module set </li>
      <li> Plague installed </li>
-     <li> The color and design of the chat changes in the control panel of the pallagin </li></ul>
+     <li> The color and design of the chat changes in the control panel of the pallagin </li>
+</ul>
      </br><ul>
 <li>ატვირთეთ პლუგინი საიტზე</li>
     <li>გამოიყენეთ დლე პლუგინ სერვისი</li>

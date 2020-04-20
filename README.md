@@ -3,13 +3,13 @@
 Plugin for Dle CMS will help you easily answer problematic users. </br>
 With a simple control panel and interface completely . </br>
 <ul>
-<li> Upload plugin to site </li>
-     <li> Use Dle Plugin Service </li>
-     <li> Go to the chat panel </li>
-     <li> Authorize User:<b>root</b> Password:<b>root</b></li>
-     <li> Confirm module set </li>
-     <li> Plague installed </li>
-     <li> The color and design of the chat changes in the control panel of the pallagin </li>
+<li>Upload plugin to site</li>
+     <li>Use Dle Plugin Service</li>
+     <li>Go to the chat panel</li>
+     <li>Authorize User:<b>root</b> Password:<b>root</b></li>
+     <li>Confirm module set</li>
+     <li>Plague installed</li>
+     <li>The color and design of the chat changes in the control panel of the pallagin</li>
 </ul>
      </br><ul>
 <li>ატვირთეთ პლუგინი საიტზე</li>

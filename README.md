@@ -9,7 +9,7 @@ With a simple control panel and interface completely . </br>
 <li>Confirm module set</li>
 <li>Plague installed</li>
 <li>The color and design of the chat changes in the control panel of the pallagin</li>
-
+</br></br></br>
 <li>ატვირთეთ პლუგინი საიტზე</li>
     <li>გამოიყენეთ დლე პლუგინ სერვისი</li>
     <li>გადადით ჩატის პანელში</li>

@@ -1,4 +1,5 @@
 # Live Chat V1.0 For DLE
+[![TicciX Copyright](https://i.imgur.com/7S2IFBc.png)](https://github.com/Ticcix/)
 
 Plugin for Dle CMS will help you easily answer problematic users. </br>
 With a simple control panel and interface completely . </br>
